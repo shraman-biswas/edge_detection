@@ -45,7 +45,7 @@ def main():
 	print "[ opencv edge detection ]"
 
 	# get image filename
-	img_filename = sys.argv[1] if len(sys.argv) > 1 else "image.png"
+	img_filename = sys.argv[1] if len(sys.argv) > 1 else "images/image.png"
 
 	# load image
 	img = cv2.imread(img_filename)
