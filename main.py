@@ -9,7 +9,7 @@ def colour_norm(img):
 			np.int0(img[:,:,1]) + \
 			np.int0(img[:,:,2])
 	sum_img = np.dstack([sum_img, sum_img, sum_img])
-	img = ((255 * img.astype("int64")) / sum_img).astype("uint8")
+	img = ((255 * img.astype("int64")) / (sum_img + 1)).astype("uint8")
 	return img
 
 
