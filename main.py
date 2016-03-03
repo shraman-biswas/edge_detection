@@ -20,11 +20,13 @@ def estimate_bbox(cnt, img):
 	bbox = cv2.boxPoints(rect)
 	bbox = np.int0(bbox)
 	#cv2.drawContours(img, [bbox], 0, (0,255,0), 2)
+
 	# rotate bounding box to get a vertical rectangle
 	M = cv2.getRotationMatrix2D(rect[0], rect[2], 1)
 	pts = np.ones((4, 3))
 	pts[:,:-1] = bbox
 	bbox_rot = np.int0(np.dot(pts, M.T))
+
 	# resize bounding box to cover the whole document
 	bbox_rot[0][0] -= 15
 	bbox_rot[0][1] += 120
@@ -32,6 +34,7 @@ def estimate_bbox(cnt, img):
 	bbox_rot[2][0] += 5
 	bbox_rot[3][0] += 5
 	bbox_rot[3][1] += 120
+
 	# rotate back bounding box to original orientation
 	p = (bbox_rot[1][0], bbox_rot[1][1])
 	M = cv2.getRotationMatrix2D(p, -rect[2], 1)
